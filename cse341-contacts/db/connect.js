@@ -1,26 +1,14 @@
-// db/connect.js
 const { MongoClient } = require('mongodb');
-const dotenv = require('dotenv');
-
-dotenv.config();
+require('dotenv').config();
 
 let _db;
 
 const initDb = async () => {
-  if (_db) {
-    console.log('DB is already initialized!');
-    return _db;
-  }
-
+  if (_db) return _db;
   try {
-    const client = await MongoClient.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      tls: true,
-      tlsAllowInvalidCertificates: true, // necesario para Render
-    });
-    _db = client;
-    console.log('Connected to MongoDB Atlas!');
+    const client = await MongoClient.connect(process.env.MONGODB_URI);
+    _db = client.db(); // <-- esto selecciona la DB del URI
+    console.log('MongoDB connected');
     return _db;
   } catch (err) {
     console.error('Failed to connect to MongoDB', err);
@@ -29,9 +17,7 @@ const initDb = async () => {
 };
 
 const getDb = () => {
-  if (!_db) {
-    throw new Error('DB not initialized');
-  }
+  if (!_db) throw new Error('Database not initialized');
   return _db;
 };
 
