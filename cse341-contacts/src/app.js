@@ -1,7 +1,9 @@
 // app.js
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongodb = require('./db/connect');
+
+const mongodb = require('../db/connect');
+
 const contactsRoutes = require('./routes/contacts');
 const dotenv = require('dotenv');
 
