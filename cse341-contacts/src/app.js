@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 const mongodb = require('../db/connect');
 
-const contactsRoutes = require('./routes/contacts');
+const contactsRoutes = require('../routes/contacts');
 const dotenv = require('dotenv');
 
 dotenv.config();
