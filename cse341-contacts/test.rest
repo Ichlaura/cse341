@@ -1,23 +1,23 @@
-# ===========================
-# GET all contacts
-# ===========================
+### ===========================
+### GET all contacts
+### ===========================
 GET http://localhost:8081/contacts
 Content-Type: application/json
 
 ###
 
-# ===========================
-# GET one contact by ID
-# Replace {id} with a valid contact _id from MongoDB
-# ===========================
-GET http://localhost:8081/contacts/{id}
+### ===========================
+### GET one contact by ID
+### ===========================
+# Reemplaza {id} con un ID real de MongoDB después de crear un contacto
+GET http://localhost:8081/contacts/68bf4a3750974d9a56cd1835
 Content-Type: application/json
 
 ###
 
-# ===========================
-# POST create a new contact
-# ===========================
+### ===========================
+### POST create a new contact
+### ===========================
 POST http://localhost:8081/contacts
 Content-Type: application/json
 
@@ -31,11 +31,11 @@ Content-Type: application/json
 
 ###
 
-# ===========================
-# PUT update a contact completely
-# Replace {id} with a valid contact _id
-# ===========================
-PUT http://localhost:8081/contacts/{id}
+### ===========================
+### PUT update a contact completely
+### ===========================
+# Reemplaza {id} con un ID real de MongoDB
+PUT http://localhost:8081/contacts/68bf4a3750974d9a56cd1835
 Content-Type: application/json
 
 {
@@ -48,11 +48,11 @@ Content-Type: application/json
 
 ###
 
-# ===========================
-# PATCH update a contact partially
-# Replace {id} with a valid contact _id
-# ===========================
-PATCH http://localhost:8081/contacts/{id}
+### ===========================
+### PATCH update a contact partially
+### ===========================
+# Reemplaza {id} con un ID real de MongoDB
+PATCH http://localhost:8081/contacts/68bf4a3750974d9a56cd1835
 Content-Type: application/json
 
 {
@@ -61,9 +61,9 @@ Content-Type: application/json
 
 ###
 
-# ===========================
-# DELETE a contact
-# Replace {id} with a valid contact _id
-# ===========================
-DELETE http://localhost:8081/contacts/{id}
+### ===========================
+### DELETE a contact
+### ===========================
+# Reemplaza {id} con un ID real de MongoDB
+DELETE http://localhost:8081/contacts/68bf4a3750974d9a56cd1835
 Content-Type: application/json

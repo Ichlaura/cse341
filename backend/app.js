@@ -1,25 +1,21 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const MongoClient = require('mongodb').MongoClient;
-const mongodb = require('./db/connect');
-const professionalRoutes = require('./routes/professional');
+const { MongoClient } = require('mongodb');
+require('dotenv').config();
 
-const port = process.env.PORT || 8080;
-const app = express();
+let _db;
 
-app
-  .use(bodyParser.json())
-  .use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    next();
-  })
-  .use('/professional', professionalRoutes);
+const initDb = async () => {
+  if (_db) return _db;
 
-mongodb.initDb((err, mongodb) => {
-  if (err) {
-    console.log(err);
-  } else {
-    app.listen(port);
-    console.log(`Connected to DB and listening on ${port}`);
-  }
-});
+  const client = new MongoClient(process.env.MONGODB_URI);
+  await client.connect();
+  _db = client.db(); // esto devuelve la DB
+  console.log('MongoDB connected');
+  return _db;
+};
+
+const getDb = () => {
+  if (!_db) throw new Error('Database not initialized');
+  return _db; // _db ya es la DB, NO necesitas .db() después
+};
+
+module.exports = { initDb, getDb };

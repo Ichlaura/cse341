@@ -7,7 +7,7 @@ const ObjectId = require('mongodb').ObjectId;
  */
 const getAllContacts = async (req, res) => {
   try {
-    const result = await mongodb.getDb().db().collection('contacts').find().toArray();
+    const result = await mongodb.getDb().collection('contacts').find().toArray();
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(result);
   } catch (err) {
@@ -22,7 +22,7 @@ const getAllContacts = async (req, res) => {
 const getContactById = async (req, res) => {
   try {
     const id = req.params.id;
-    const result = await mongodb.getDb().db().collection('contacts')
+    const result = await mongodb.getDb().collection('contacts')
       .find({ _id: new ObjectId(id) })
       .toArray();
 
@@ -49,7 +49,7 @@ const createContact = async (req, res) => {
       birthday: req.body.birthday || null
     };
 
-    const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
+    const result = await mongodb.getDb().collection('contacts').insertOne(contact);
 
     res.status(201).json({ message: 'Contact created', contactId: result.insertedId });
   } catch (err) {
@@ -72,7 +72,7 @@ const updateContact = async (req, res) => {
       birthday: req.body.birthday || null
     };
 
-    const result = await mongodb.getDb().db().collection('contacts')
+    const result = await mongodb.getDb().collection('contacts')
       .replaceOne({ _id: new ObjectId(id) }, contact);
 
     if (result.matchedCount === 0) return res.status(404).json({ message: 'Contact not found' });
@@ -91,7 +91,7 @@ const partialUpdateContact = async (req, res) => {
   try {
     const id = req.params.id;
 
-    const result = await mongodb.getDb().db().collection('contacts')
+    const result = await mongodb.getDb().collection('contacts')
       .updateOne({ _id: new ObjectId(id) }, { $set: req.body });
 
     if (result.matchedCount === 0) return res.status(404).json({ message: 'Contact not found' });
@@ -110,7 +110,7 @@ const deleteContact = async (req, res) => {
   try {
     const id = req.params.id;
 
-    const result = await mongodb.getDb().db().collection('contacts')
+    const result = await mongodb.getDb().collection('contacts')
       .deleteOne({ _id: new ObjectId(id) });
 
     if (result.deletedCount === 0) return res.status(404).json({ message: 'Contact not found' });

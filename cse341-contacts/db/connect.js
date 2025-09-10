@@ -5,15 +5,10 @@ let _db;
 
 const initDb = async () => {
   if (_db) return _db;
-  try {
-    const client = await MongoClient.connect(process.env.MONGODB_URI);
-    _db = client.db(); // <-- esto selecciona la DB del URI
-    console.log('MongoDB connected');
-    return _db;
-  } catch (err) {
-    console.error('Failed to connect to MongoDB', err);
-    throw err;
-  }
+  const client = await MongoClient.connect(process.env.MONGODB_URI);
+  _db = client.db(); // selecciona la DB del URI
+  console.log('MongoDB connected');
+  return _db;
 };
 
 const getDb = () => {
