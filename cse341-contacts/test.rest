@@ -1,16 +1,69 @@
-
+# ===========================
+# GET all contacts
+# ===========================
 GET http://localhost:8081/contacts
 Content-Type: application/json
 
+###
 
-### add  Agregar un nuevo contacto
+# ===========================
+# GET one contact by ID
+# Replace {id} with a valid contact _id from MongoDB
+# ===========================
+GET http://localhost:8081/contacts/{id}
+Content-Type: application/json
+
+###
+
+# ===========================
+# POST create a new contact
+# ===========================
 POST http://localhost:8081/contacts
 Content-Type: application/json
 
 {
   "firstName": "Carla",
-  "lastName": "Martínez",
+  "lastName": "Martinez",
   "email": "carla@example.com",
-  "favoriteColor": "verde",
+  "favoriteColor": "green",
   "birthday": "1990-07-12"
 }
+
+###
+
+# ===========================
+# PUT update a contact completely
+# Replace {id} with a valid contact _id
+# ===========================
+PUT http://localhost:8081/contacts/{id}
+Content-Type: application/json
+
+{
+  "firstName": "Carla",
+  "lastName": "Martinez",
+  "email": "carla_updated@example.com",
+  "favoriteColor": "blue",
+  "birthday": "1990-07-12"
+}
+
+###
+
+# ===========================
+# PATCH update a contact partially
+# Replace {id} with a valid contact _id
+# ===========================
+PATCH http://localhost:8081/contacts/{id}
+Content-Type: application/json
+
+{
+  "favoriteColor": "yellow"
+}
+
+###
+
+# ===========================
+# DELETE a contact
+# Replace {id} with a valid contact _id
+# ===========================
+DELETE http://localhost:8081/contacts/{id}
+Content-Type: application/json
