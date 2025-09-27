@@ -18,7 +18,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Rutas
+// Routes
 app.use('/contacts', contactsRoutes);
 
 app.get('/', (req, res) => {
@@ -27,11 +27,12 @@ app.get('/', (req, res) => {
 
 
 
-//documentacion de swagger
+//swagger  documentation
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Conexión a MongoDB y arranque del servidor
+
 mongodb.initDb()
   .then(() => {
     app.listen(port, () => console.log(`Connected to DB and listening on ${port}`));
