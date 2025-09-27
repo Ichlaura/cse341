@@ -10,8 +10,7 @@ Content-Type: application/json
 ### GET one contact by ID
 ### ===========================
 # Reemplaza {id} con un ID real de MongoDB después de crear un contacto
-GET http://localhost:8081/contacts/68bf4a3750974d9a56cd1835
-Content-Type: application/json
+GET http://localhost:8081/contacts/68bf4a3750974d9a56cd1836
 
 ###
 
@@ -35,7 +34,7 @@ Content-Type: application/json
 ### PUT update a contact completely
 ### ===========================
 # Reemplaza {id} con un ID real de MongoDB
-PUT http://localhost:8081/contacts/68bf4a3750974d9a56cd1835
+PUT http://localhost:8081/contacts/68bf4a3750974d9a56cd1836
 Content-Type: application/json
 
 {
@@ -52,7 +51,7 @@ Content-Type: application/json
 ### PATCH update a contact partially
 ### ===========================
 # Reemplaza {id} con un ID real de MongoDB
-PATCH http://localhost:8081/contacts/68bf4a3750974d9a56cd1835
+PATCH http://localhost:8081/contacts/68bf4a3750974d9a56cd1836
 Content-Type: application/json
 
 {
@@ -65,5 +64,5 @@ Content-Type: application/json
 ### DELETE a contact
 ### ===========================
 # Reemplaza {id} con un ID real de MongoDB
-DELETE http://localhost:8081/contacts/68bf4a3750974d9a56cd1835
+DELETE http://localhost:8081/contacts/68bf4a3750974d9a56cd1836
 Content-Type: application/json

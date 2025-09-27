@@ -6,7 +6,8 @@ const contactsRoutes = require('../routes/contacts');
 
 const app = express();
 const port = process.env.PORT || 8081;
-
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
 app.use(bodyParser.json());
 
 // CORS
@@ -23,6 +24,12 @@ app.use('/contacts', contactsRoutes);
 app.get('/', (req, res) => {
   res.send('Hello World! API de Contacts funcionando');
 });
+
+
+
+//documentacion de swagger
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Conexión a MongoDB y arranque del servidor
 mongodb.initDb()
