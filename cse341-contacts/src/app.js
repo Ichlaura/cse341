@@ -30,6 +30,11 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
 // Routes
 app.use('/contacts', contactsRoutes);
 
+// Después de las rutas
+app.get('/test', (req, res) => {
+  res.json({ message: 'API working', timestamp: new Date() });
+});
+
 app.get('/', (req, res) => {
   res.send('Hello World! API de Contacts funcionando');
 });
