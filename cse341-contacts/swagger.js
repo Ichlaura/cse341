@@ -5,11 +5,11 @@ const doc = {
     title: 'Contacts API',
     description: 'Contacts API'
   },
-  host: 'cse341-kzf0.onrender.com',  // Usa ESTA URL que te dio Render
+  host: 'cse341-kzf0.onrender.com',
   schemes: ['https']
 };
 
-const outputFile = './swagger-output.json';  // Quita el ../
-const endpointsFiles = ['./routes/contacts.js'];
+const outputFile = './src/swagger-output.json';
+const endpointsFiles = ['./routes/contacts.js']; // ✅ Ruta correcta
 
 swaggerAutogen(outputFile, endpointsFiles, doc);
