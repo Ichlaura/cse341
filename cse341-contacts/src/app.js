@@ -28,6 +28,17 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
 }));
 
 // Routes
+
+
+// Antes de las otras rutas
+app.get('/test', (req, res) => {
+  res.json({ 
+    message: 'API is working', 
+    database: 'Checking connection...',
+    timestamp: new Date().toISOString()
+  });
+});
+
 app.use('/contacts', contactsRoutes);
 
 // Después de las rutas
@@ -46,9 +57,18 @@ app.get('/', (req, res) => {
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Conexión a MongoDB y arranque del servidor
-
+// Modifica la conexión a MongoDB para mejor logging
 mongodb.initDb()
   .then(() => {
-    app.listen(port, () => console.log(`Connected to DB and listening on ${port}`));
+    console.log('✅ MongoDB connected successfully');
+    app.listen(port, () => {
+      console.log(`✅ Server running on port ${port}`);
+      console.log(`✅ API URL: http://localhost:${port}`);
+      console.log(`✅ Swagger docs: http://localhost:${port}/api-docs`);
+    });
   })
-  .catch(err => console.error('Failed to start server', err));
+  .catch(err => {
+    console.error('❌ MongoDB connection failed:', err);
+    console.log('💡 Check your MONGODB_URI in Render environment variables');
+    process.exit(1);
+  });
