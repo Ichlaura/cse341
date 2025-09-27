@@ -10,6 +10,6 @@ const doc = {
 };
 
 const outputFile = './src/swagger-output.json';
-const endpointsFiles = ['./routes/contacts.js']; // ✅ Ruta correcta
+const endpointsFiles = ['./src/app.js']; // Cambia a app.js en lugar de contacts.js
 
 swaggerAutogen(outputFile, endpointsFiles, doc);
