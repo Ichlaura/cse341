@@ -9,6 +9,8 @@ const port = process.env.PORT || 8081;
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger-output.json');
 app.use(bodyParser.json());
+const cors = require('cors');
+app.use(cors());
 
 // CORS
 app.use((req, res, next) => {
@@ -17,6 +19,13 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
+
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
+  swaggerOptions: {
+    url: '/swagger-output.json'
+  }
+}));
 
 // Routes
 app.use('/contacts', contactsRoutes);
